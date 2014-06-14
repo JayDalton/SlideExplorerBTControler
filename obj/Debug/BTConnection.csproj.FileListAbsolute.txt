@@ -1,0 +1,14 @@
+C:\Studium\AI Master\Semester2\01 IndependendCourswork\Examples\Bluetooth\bin\Debug\Bluetooth.exe.config
+C:\Studium\AI Master\Semester2\01 IndependendCourswork\Examples\Bluetooth\bin\Debug\Bluetooth.exe
+C:\Studium\AI Master\Semester2\01 IndependendCourswork\Examples\Bluetooth\bin\Debug\Bluetooth.pdb
+C:\Studium\AI Master\Semester2\01 IndependendCourswork\Examples\Bluetooth\bin\Debug\InTheHand.Net.Personal.dll
+C:\Studium\AI Master\Semester2\01 IndependendCourswork\Examples\Bluetooth\bin\Debug\InTheHand.Net.Personal.xml
+C:\Studium\AI Master\Semester2\01 IndependendCourswork\Examples\Bluetooth\obj\Debug\MainWindow.baml
+C:\Studium\AI Master\Semester2\01 IndependendCourswork\Examples\Bluetooth\obj\Debug\MainWindow.g.cs
+C:\Studium\AI Master\Semester2\01 IndependendCourswork\Examples\Bluetooth\obj\Debug\App.g.cs
+C:\Studium\AI Master\Semester2\01 IndependendCourswork\Examples\Bluetooth\obj\Debug\Bluetooth_MarkupCompile.cache
+C:\Studium\AI Master\Semester2\01 IndependendCourswork\Examples\Bluetooth\obj\Debug\Bluetooth.g.resources
+C:\Studium\AI Master\Semester2\01 IndependendCourswork\Examples\Bluetooth\obj\Debug\BTConnection.Properties.Resources.resources
+C:\Studium\AI Master\Semester2\01 IndependendCourswork\Examples\Bluetooth\obj\Debug\BTConnection.csproj.GenerateResource.Cache
+C:\Studium\AI Master\Semester2\01 IndependendCourswork\Examples\Bluetooth\obj\Debug\Bluetooth.exe
+C:\Studium\AI Master\Semester2\01 IndependendCourswork\Examples\Bluetooth\obj\Debug\Bluetooth.pdb

@@ -1,0 +1,69 @@
+﻿<Window 
+  x:Class="BTControler.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  Title="MainWindow" Width="800" Height="600"
+  WindowStartupLocation="CenterScreen"
+  >
+  <Grid>
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="60"/>
+    </Grid.RowDefinitions>
+
+    <Canvas 
+      Grid.Row="0"
+      x:Name="canvMain"
+      Background="Yellow"
+      TouchDown="Canvas_TouchDown"
+      TouchMove="Canvas_TouchMove"
+      TouchUp="Canvas_TouchUp"
+      MouseDown="canvMain_MouseDown"
+      MouseMove="canvMain_MouseMove"
+      MouseUp="canvMain_MouseUp"
+      MouseLeftButtonDown="canvMain_MouseLeftButtonDown"
+      />
+
+    <Grid Grid.Row="2">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="100"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="100"/>
+      </Grid.ColumnDefinitions>
+
+      <Button 
+        Grid.Column="0"
+        x:Name="ConnectBySelect"
+        Content="Connect"
+        Click="ConnectBySelect_Click" 
+        />
+
+      <ListBox 
+        Grid.Column="1" 
+        ItemsSource="{Binding BTService.Items}" 
+        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+        >
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <TextBlock 
+              Text="{Binding Data}" 
+              TextWrapping="Wrap"
+              VerticalAlignment="Stretch" 
+              FontFamily="Consolas"/>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+
+      <Button 
+        Grid.Column="2"
+        x:Name="RadioInformations"
+        Content="Radio Infos"
+        Click="RadioInformations_Click"
+        />
+
+    </Grid>
+
+  </Grid>
+
+</Window>
