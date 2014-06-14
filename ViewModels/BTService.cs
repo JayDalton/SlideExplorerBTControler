@@ -26,7 +26,9 @@ namespace BTControler
     public ObservableCollection<BTData> Items { get; set; }
     private object _listLock = new object();
 
-    public BlockingCollection<BTData> Datas { get; set; }
+    public ConcurrentQueue<BTData> Datas { get; set; }
+    //public ConcurrentQueue<BTData> Dats { get; set; }
+
 
     private string sendValue = "";
     public string SendValue { 
@@ -36,7 +38,7 @@ namespace BTControler
         if (value != sendValue)
         {
           sendValue = value;
-          Datas.Add(new BTData { Data = value });
+          Datas.Enqueue(new BTData { Data = value });
           AddMessage(MessageSource.Info, value);
           NotifyPropertyChanged();
         }
@@ -53,7 +55,7 @@ namespace BTControler
         {
           sendPoint = value;
           string result = "P:" + convertPoint(value);
-          Datas.Add(new BTData { Data = result });
+          Datas.Enqueue(new BTData { Data = result });
           AddMessage(MessageSource.Info, result);
           NotifyPropertyChanged();
         }
@@ -70,7 +72,7 @@ namespace BTControler
         {
           sendTranslation = value;
           string result = "V:" + convertPoint(value);
-          Datas.Add(new BTData { Data = result });
+          Datas.Enqueue(new BTData { Data = result });
           AddMessage(MessageSource.Info, result);
           NotifyPropertyChanged();
         }
@@ -108,7 +110,7 @@ namespace BTControler
 
     public BTService()
     {
-      Datas = new BlockingCollection<BTData>();
+      Datas = new ConcurrentQueue<BTData>();
 
       Items = new ObservableCollection<BTData>();
       BindingOperations.EnableCollectionSynchronization(Items, _listLock);
@@ -214,10 +216,12 @@ namespace BTControler
 
     private void Sending_Runner(object state)
     {
+      BTData result;
       while (true)
       {
-        if (Send(Datas.Take().Data))
+        if (Datas.TryDequeue(out result))
         {
+          Send(result.Data);
           //AddMessage(MessageSource.Info, "Sending...");
         }
       }
