@@ -23,12 +23,12 @@ namespace BTControler
     readonly Guid OurServiceClassId = new Guid("{29913A2D-EB93-40cf-BBB8-DEEE26452197}");
     readonly string OurServiceName = "32feet.NET Chat2";
 
-    public ObservableCollection<BTData> Items { get; set; }
+    // ListBox Reporting Items
+    public ObservableCollection<BTData> ListItems { get; set; }
     private object _listLock = new object();
 
-    public ConcurrentQueue<BTData> Datas { get; set; }
-    //public ConcurrentQueue<BTData> Dats { get; set; }
-
+    // DataQueue for sending...
+    public ConcurrentQueue<BTData> SendItems { get; set; }
 
     private string sendValue = "";
     public string SendValue { 
@@ -38,8 +38,8 @@ namespace BTControler
         if (value != sendValue)
         {
           sendValue = value;
-          Datas.Enqueue(new BTData { Data = value });
-          AddMessage(MessageSource.Info, value);
+          SendItems.Enqueue(new BTData { Data = value });
+          //AddMessage(MessageSource.Info, value);
           NotifyPropertyChanged();
         }
       }
@@ -55,8 +55,8 @@ namespace BTControler
         {
           sendPoint = value;
           string result = "P:" + convertPoint(value);
-          Datas.Enqueue(new BTData { Data = result });
-          AddMessage(MessageSource.Info, result);
+          SendItems.Enqueue(new BTData { Data = result });
+          //AddMessage(MessageSource.Info, result);
           NotifyPropertyChanged();
         }
       }
@@ -72,8 +72,8 @@ namespace BTControler
         {
           sendTranslation = value;
           string result = "V:" + convertPoint(value);
-          Datas.Enqueue(new BTData { Data = result });
-          AddMessage(MessageSource.Info, result);
+          SendItems.Enqueue(new BTData { Data = result });
+          //AddMessage(MessageSource.Info, result);
           NotifyPropertyChanged();
         }
       }
@@ -110,12 +110,10 @@ namespace BTControler
 
     public BTService()
     {
-      Datas = new ConcurrentQueue<BTData>();
-
-      Items = new ObservableCollection<BTData>();
-      BindingOperations.EnableCollectionSynchronization(Items, _listLock);
-
       StartBluetooth();
+      SendItems = new ConcurrentQueue<BTData>();
+      ListItems = new ObservableCollection<BTData>();
+      BindingOperations.EnableCollectionSynchronization(ListItems, _listLock);
       AddMessage(MessageSource.Info, "Connect to another remote device!");
     }
 
@@ -219,10 +217,10 @@ namespace BTControler
       BTData result;
       while (true)
       {
-        if (Datas.TryDequeue(out result))
+        if (SendItems.TryDequeue(out result))
         {
           Send(result.Data);
-          //AddMessage(MessageSource.Info, "Sending...");
+          AddMessage(MessageSource.Local, "Sending: " + result.Data);
         }
       }
     }
@@ -520,10 +518,10 @@ namespace BTControler
       result = prefix + message;
       lock (_listLock)
       {
-        Items.Insert(0, new BTData { Data = result });
-        if (500 < Items.Count)
+        ListItems.Insert(0, new BTData { Data = result });
+        if (500 < ListItems.Count)
         {
-          Items.RemoveAt(500);
+          ListItems.RemoveAt(500);
         }
       }
     }
