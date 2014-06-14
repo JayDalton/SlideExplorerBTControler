@@ -104,17 +104,17 @@ namespace BTControler
     //  }
     //}
 
-    volatile bool _closing;
+    volatile bool btClosing;
     TextWriter _connWtr;
-    BluetoothListener _lsnr;
+    BluetoothListener btListener;
 
     public BTService()
     {
-      StartBluetooth();
       SendItems = new ConcurrentQueue<BTData>();
       ListItems = new ObservableCollection<BTData>();
       BindingOperations.EnableCollectionSynchronization(ListItems, _listLock);
       AddMessage(MessageSource.Info, "Connect to another remote device!");
+      StartBluetooth();
     }
 
     #region Bluetooth start/Connect/Listen
@@ -139,25 +139,24 @@ namespace BTControler
 
     private BluetoothAddress BluetoothSelect()
     {
-      var dlg = new SelectBluetoothDeviceDialog();
-      var rslt = dlg.ShowDialog();
-      if (rslt != DialogResult.OK)
+      SelectBluetoothDeviceDialog btDeviceDialog = new SelectBluetoothDeviceDialog();
+      DialogResult dlgResult = btDeviceDialog.ShowDialog();
+      if (dlgResult != DialogResult.OK)
       {
         AddMessage(MessageSource.Info, "Cancelled select device.");
         return null;
       }
-      var addr = dlg.SelectedDevice.DeviceAddress;
-      return addr;
+      return btDeviceDialog.SelectedDevice.DeviceAddress;
     }
 
     private void BluetoothConnect(BluetoothAddress addr)
     {
-      var cli = new BluetoothClient();
+      BluetoothClient btClient = new BluetoothClient();
       try
       {
-        cli.Connect(addr, OurServiceClassId);
-        var peer = cli.GetStream();
-        SetConnection(peer, true, cli.RemoteEndPoint);
+        btClient.Connect(addr, OurServiceClassId);
+        var peer = btClient.GetStream();
+        SetConnection(peer, true, btClient.RemoteEndPoint);
         ThreadPool.QueueUserWorkItem(ReadMessagesToEnd_Runner, peer);
       }
       catch (SocketException ex)
@@ -230,13 +229,13 @@ namespace BTControler
       var lsnr = new BluetoothListener(OurServiceClassId);
       lsnr.ServiceName = OurServiceName;
       lsnr.Start();
-      _lsnr = lsnr;
+      btListener = lsnr;
       ThreadPool.QueueUserWorkItem(ListenerAccept_Runner, lsnr);
     }
 
     void ListenerAccept_Runner(object state)
     {
-      var lsnr = (BluetoothListener)_lsnr;
+      var lsnr = (BluetoothListener)btListener;
       // We will accept only one incoming connection at a time. So just
       // accept the connection and loop until it closes.
       // To handle multiple connections we would need one threads for
@@ -260,7 +259,7 @@ namespace BTControler
         AddMessage(MessageSource.Error, "Already Connected!");
         return;
       }
-      _closing = false;
+      btClosing = false;
       var connWtr = new StreamWriter(peerStream);
       connWtr.NewLine = "\r\n"; // Want CR+LF even on UNIX/Mac etc.
       _connWtr = connWtr;
@@ -274,7 +273,7 @@ namespace BTControler
 
     private void ConnectionCleanup()
     {
-      _closing = true;
+      btClosing = true;
       var wtr = _connWtr;
       //_connStrm = null;
       _connWtr = null;
@@ -339,7 +338,7 @@ namespace BTControler
         }
         catch (IOException ioex)
         {
-          if (_closing)
+          if (btClosing)
           {
             // Ignore the error that occurs when we're in a Read
             // and _we_ close the connection.

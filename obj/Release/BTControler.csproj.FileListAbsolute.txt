@@ -45,17 +45,3 @@ c:\Studium\AI Master\Semester2\01 IndependendCourswork\Implementierung\SlideExpl
 c:\Studium\AI Master\Semester2\01 IndependendCourswork\Implementierung\SlideExplorerBTControler\obj\Release\BTControler.csproj.GenerateResource.Cache
 c:\Studium\AI Master\Semester2\01 IndependendCourswork\Implementierung\SlideExplorerBTControler\obj\Release\Bluetooth.exe
 c:\Studium\AI Master\Semester2\01 IndependendCourswork\Implementierung\SlideExplorerBTControler\obj\Release\Bluetooth.pdb
-C:\Develop\SlideExplorerBTControler\bin\Release\Bluetooth.exe.config
-C:\Develop\SlideExplorerBTControler\bin\Release\Bluetooth.exe
-C:\Develop\SlideExplorerBTControler\bin\Release\Bluetooth.pdb
-C:\Develop\SlideExplorerBTControler\bin\Release\InTheHand.Net.Personal.dll
-C:\Develop\SlideExplorerBTControler\bin\Release\InTheHand.Net.Personal.xml
-C:\Develop\SlideExplorerBTControler\obj\Release\MainWindow.baml
-C:\Develop\SlideExplorerBTControler\obj\Release\MainWindow.g.cs
-C:\Develop\SlideExplorerBTControler\obj\Release\App.g.cs
-C:\Develop\SlideExplorerBTControler\obj\Release\Bluetooth_MarkupCompile.cache
-C:\Develop\SlideExplorerBTControler\obj\Release\Bluetooth.g.resources
-C:\Develop\SlideExplorerBTControler\obj\Release\BTControler.Properties.Resources.resources
-C:\Develop\SlideExplorerBTControler\obj\Release\BTControler.csproj.GenerateResource.Cache
-C:\Develop\SlideExplorerBTControler\obj\Release\Bluetooth.exe
-C:\Develop\SlideExplorerBTControler\obj\Release\Bluetooth.pdb

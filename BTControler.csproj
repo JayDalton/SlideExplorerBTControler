@@ -83,7 +83,6 @@
     </ApplicationDefinition>
     <Compile Include="ViewModels\BTBase.cs" />
     <Compile Include="ViewModels\BTService.cs" />
-    <Compile Include="ViewModels\BTConnect.cs" />
     <Compile Include="ViewModels\BTData.cs" />
     <Compile Include="ViewModels\BTModel.cs" />
     <Page Include="MainWindow.xaml">

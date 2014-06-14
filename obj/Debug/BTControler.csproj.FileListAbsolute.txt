@@ -46,13 +46,10 @@ c:\Studium\AI Master\Semester2\01 IndependendCourswork\Implementierung\SlideExpl
 c:\Studium\AI Master\Semester2\01 IndependendCourswork\Implementierung\SlideExplorerBTControler\obj\Debug\BTControler.Properties.Resources.resources
 c:\Studium\AI Master\Semester2\01 IndependendCourswork\Implementierung\SlideExplorerBTControler\obj\Debug\BTControler.csproj.GenerateResource.Cache
 C:\Develop\SlideExplorerBTControler\bin\Debug\Bluetooth.exe.config
-C:\Develop\SlideExplorerBTControler\obj\Debug\Bluetooth.exe
-C:\Develop\SlideExplorerBTControler\obj\Debug\Bluetooth.pdb
 C:\Develop\SlideExplorerBTControler\bin\Debug\Bluetooth.exe
 C:\Develop\SlideExplorerBTControler\bin\Debug\Bluetooth.pdb
 C:\Develop\SlideExplorerBTControler\bin\Debug\InTheHand.Net.Personal.dll
 C:\Develop\SlideExplorerBTControler\bin\Debug\InTheHand.Net.Personal.xml
-C:\Develop\SlideExplorerBTControler\obj\Debug\BTControler.csprojResolveAssemblyReference.cache
 C:\Develop\SlideExplorerBTControler\obj\Debug\MainWindow.baml
 C:\Develop\SlideExplorerBTControler\obj\Debug\MainWindow.g.cs
 C:\Develop\SlideExplorerBTControler\obj\Debug\App.g.cs
@@ -60,3 +57,5 @@ C:\Develop\SlideExplorerBTControler\obj\Debug\Bluetooth_MarkupCompile.cache
 C:\Develop\SlideExplorerBTControler\obj\Debug\Bluetooth.g.resources
 C:\Develop\SlideExplorerBTControler\obj\Debug\BTControler.Properties.Resources.resources
 C:\Develop\SlideExplorerBTControler\obj\Debug\BTControler.csproj.GenerateResource.Cache
+C:\Develop\SlideExplorerBTControler\obj\Debug\Bluetooth.exe
+C:\Develop\SlideExplorerBTControler\obj\Debug\Bluetooth.pdb
