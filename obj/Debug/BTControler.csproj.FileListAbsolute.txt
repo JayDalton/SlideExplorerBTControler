@@ -59,3 +59,4 @@ C:\Develop\SlideExplorerBTControler\obj\Debug\BTControler.Properties.Resources.r
 C:\Develop\SlideExplorerBTControler\obj\Debug\BTControler.csproj.GenerateResource.Cache
 C:\Develop\SlideExplorerBTControler\obj\Debug\Bluetooth.exe
 C:\Develop\SlideExplorerBTControler\obj\Debug\Bluetooth.pdb
+C:\Develop\SlideExplorerBTControler\obj\Debug\BTControler.csprojResolveAssemblyReference.cache

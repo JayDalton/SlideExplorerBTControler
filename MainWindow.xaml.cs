@@ -184,13 +184,6 @@ namespace BTControler
 
     #endregion
 
-    private void canvMain_SizeChanged(object sender, SizeChangedEventArgs e)
-    {
-      //Canvas c = (Canvas)sender;
-      //App.ViewModel.BTService.CanvasWidth = c.ActualWidth;
-      //App.ViewModel.BTService.CanvasHeight = c.ActualHeight;
-    }
-
     #region Test
 
     private void test()
