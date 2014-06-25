@@ -45,3 +45,4 @@ c:\Studium\AI Master\Semester2\01 IndependendCourswork\Implementierung\SlideExpl
 c:\Studium\AI Master\Semester2\01 IndependendCourswork\Implementierung\SlideExplorerBTControler\obj\Release\BTControler.csproj.GenerateResource.Cache
 c:\Studium\AI Master\Semester2\01 IndependendCourswork\Implementierung\SlideExplorerBTControler\obj\Release\Bluetooth.exe
 c:\Studium\AI Master\Semester2\01 IndependendCourswork\Implementierung\SlideExplorerBTControler\obj\Release\Bluetooth.pdb
+C:\Develop\SlideExplorerBTControler\bin\Release\Bluetooth.exe.config
