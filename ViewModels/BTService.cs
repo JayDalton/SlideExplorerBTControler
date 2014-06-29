@@ -39,7 +39,6 @@ namespace BTControler
         {
           sendValue = value;
           SendItems.Enqueue(new BTData { Data = value });
-          //AddMessage(MessageSource.Info, value);
           NotifyPropertyChanged();
         }
       }
@@ -56,7 +55,6 @@ namespace BTControler
           sendPoint = value;
           string result = "P:" + convertPoint(value);
           SendItems.Enqueue(new BTData { Data = result });
-          //AddMessage(MessageSource.Info, result);
           NotifyPropertyChanged();
         }
       }
@@ -73,7 +71,6 @@ namespace BTControler
           sendTranslation = value;
           string result = "V:" + convertPoint(value);
           SendItems.Enqueue(new BTData { Data = result });
-          //AddMessage(MessageSource.Info, result);
           NotifyPropertyChanged();
         }
       }
@@ -457,6 +454,13 @@ namespace BTControler
         p.Y.ToString("0.0000", CultureInfo.InvariantCulture);
     }
 
+    private string convertVector(Vector v)
+    {
+      return
+        v.X.ToString("0.0000", CultureInfo.InvariantCulture) + ";" +
+        v.Y.ToString("0.0000", CultureInfo.InvariantCulture);
+    }
+
     //--
     private void wtbModeDiscoverable_Click(object sender, EventArgs e)
     {
@@ -481,6 +485,7 @@ namespace BTControler
         AddMessage(MessageSource.Info, wtr.ToString());
       }
     }
+
     #endregion
 
     #region Chat Log
