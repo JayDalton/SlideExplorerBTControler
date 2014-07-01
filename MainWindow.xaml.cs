@@ -70,7 +70,6 @@ namespace BTControler
       {
         moveCounter++;
         Point p = e.GetPosition(this);
-        System.Drawing.Point pd;
         Point v = getVector(LastPosition, p);
         App.ViewModel.BTService.SendTranslation = v;
         AddLineFromTo(canvMain, LastPosition, p, Brushes.Black);
@@ -211,6 +210,38 @@ namespace BTControler
       client.Connect(addr, BluetoothService.HumanInterfaceDevice);
     }
     #endregion
+
+    private void canvMain_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+    {
+      Vector vec = e.DeltaManipulation.Scale;
+      MessageBox.Show("ManiDelatVec: " + vec.ToString());
+
+
+      //// Get the image that's being manipulated.
+      //UIElement element = (UIElement)e.Source;
+
+      //// Use the matrix of the transform to manipulate the element's appearance.
+      //Matrix matrix = ((MatrixTransform)element.RenderTransform).Matrix;
+      
+      //// Get the ManipulationDelta object.
+      //ManipulationDelta deltaManipulation = e.DeltaManipulation;
+      //Size s = element.RenderSize;
+      
+      //// Find the old center, and apply any previous manipulations.
+      //Point center = new Point(element.ActualWidth / 2, element.ActualHeight / 2);
+      //center = matrix.Transform(center);
+      
+      //// Apply new zoom manipulation (if it exists).
+      //matrix.ScaleAt(deltaManipulation.Scale.X, deltaManipulation.Scale.Y,
+      //center.X, center.Y);
+      
+      //// Apply new rotation manipulation (if it exists).
+      //matrix.RotateAt(e.DeltaManipulation.Rotation, center.X, center.Y);
+      
+      //// Apply new panning manipulation (if it exists).
+      //matrix.Translate(e.DeltaManipulation.Translation.X,
+      //e.DeltaManipulation.Translation.Y);
+    }
 
   }
 }

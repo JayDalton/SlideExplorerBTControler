@@ -4,12 +4,13 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   Title="MainWindow" Width="800" Height="600"
   WindowStartupLocation="CenterScreen"
+  WindowState="Maximized"
   >
   <Grid>
 
     <Grid.RowDefinitions>
       <RowDefinition Height="*"/>
-      <RowDefinition Height="60"/>
+      <RowDefinition Height="120"/>
     </Grid.RowDefinitions>
 
     <Canvas 
@@ -23,6 +24,7 @@
       MouseMove="canvMain_MouseMove"
       MouseUp="canvMain_MouseUp"
       MouseLeftButtonDown="canvMain_MouseLeftButtonDown"
+      ManipulationDelta="canvMain_ManipulationDelta"
       />
 
     <Grid Grid.Row="2">
@@ -41,7 +43,7 @@
 
       <ListBox 
         Grid.Column="1" 
-        ItemsSource="{Binding BTService.Items}" 
+        ItemsSource="{Binding BTService.ListItems}" 
         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
         >
         <ListBox.ItemTemplate>
