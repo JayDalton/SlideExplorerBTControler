@@ -12,19 +12,22 @@
       <RowDefinition Height="*"/>
       <RowDefinition Height="120"/>
     </Grid.RowDefinitions>
-
-    <Canvas 
-      Grid.Row="0"
-      x:Name="canvMain"
-      Background="Yellow"
-      TouchDown="Canvas_TouchDown"
+    <!--TouchDown="Canvas_TouchDown"
       TouchMove="Canvas_TouchMove"
       TouchUp="Canvas_TouchUp"
       MouseDown="canvMain_MouseDown"
       MouseMove="canvMain_MouseMove"
       MouseUp="canvMain_MouseUp"
-      MouseLeftButtonDown="canvMain_MouseLeftButtonDown"
+      MouseLeftButtonDown="canvMain_MouseLeftButtonDown"-->
+
+    <Canvas 
+      Grid.Row="0"
+      x:Name="canvMain"
+      Background="Yellow"
+      ManipulationStarting="canvMain_ManipulationStarting"
+      ManipulationStarted="canvMain_ManipulationStarted"
       ManipulationDelta="canvMain_ManipulationDelta"
+      IsManipulationEnabled="True"
       />
 
     <Grid Grid.Row="2">

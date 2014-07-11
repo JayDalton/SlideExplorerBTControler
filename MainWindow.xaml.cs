@@ -211,21 +211,43 @@ namespace BTControler
     }
     #endregion
 
+    private void canvMain_ManipulationStarting(object sender, ManipulationStartingEventArgs e)
+    {
+
+    }
+
+    private void canvMain_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+    {
+      Manipulation.SetManipulationMode(sender as UIElement, ManipulationModes.All);
+    }
+
     private void canvMain_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
     {
       Vector vec = e.DeltaManipulation.Scale;
-      MessageBox.Show("ManiDelatVec: " + vec.ToString());
+      //MessageBox.Show("ManiDelatVec: " + vec.ToString());
 
 
-      //// Get the image that's being manipulated.
-      //UIElement element = (UIElement)e.Source;
+      // Get the image that's being manipulated.
+      UIElement element = e.Source as UIElement;
 
       //// Use the matrix of the transform to manipulate the element's appearance.
       //Matrix matrix = ((MatrixTransform)element.RenderTransform).Matrix;
-      
-      //// Get the ManipulationDelta object.
-      //ManipulationDelta deltaManipulation = e.DeltaManipulation;
-      //Size s = element.RenderSize;
+
+      // Get the ManipulationDelta object.
+      ManipulationDelta deltaManipulation = e.DeltaManipulation;
+      Size s = element.RenderSize;
+      Point center = e.ManipulationOrigin;
+
+      if (0 < deltaManipulation.Scale.Length)
+      {
+        App.ViewModel.BTService.SendPoint = e.ManipulationOrigin;
+        App.ViewModel.BTService.SendScale = deltaManipulation.Scale;
+      }
+
+      if (0 < deltaManipulation.Translation.Length)
+      {
+        App.ViewModel.BTService.SendTrans = deltaManipulation.Translation;
+      }
       
       //// Find the old center, and apply any previous manipulations.
       //Point center = new Point(element.ActualWidth / 2, element.ActualHeight / 2);

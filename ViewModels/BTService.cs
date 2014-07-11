@@ -54,8 +54,9 @@ namespace BTControler
         {
           sendPoint = value;
           string result = "P:" + convertPoint(value);
-          SendItems.Enqueue(new BTData { Data = result });
-          NotifyPropertyChanged();
+          AddMessage(MessageSource.Local, "SendPoint: " + convertPoint(value));
+          //SendItems.Enqueue(new BTData { Data = result });
+          //NotifyPropertyChanged();
         }
       }
     }
@@ -72,6 +73,40 @@ namespace BTControler
           string result = "V:" + convertPoint(value);
           SendItems.Enqueue(new BTData { Data = result });
           NotifyPropertyChanged();
+        }
+      }
+    }
+
+    private Vector sendTrans = new Vector();
+    public Vector SendTrans
+    {
+      get { return sendTrans; }
+      set
+      {
+        if (value != sendTrans)
+        {
+          sendTrans = value;
+          AddMessage(MessageSource.Local, "SendTrans: " + convertVector(value));
+          //string result = "V:" + convertPoint(value);
+          //SendItems.Enqueue(new BTData { Data = result });
+          //NotifyPropertyChanged();
+        }
+      }
+    }
+
+    private Vector sendScale = new Vector();
+    public Vector SendScale
+    {
+      get { return sendScale; }
+      set
+      {
+        if (value != sendScale)
+        {
+          sendScale = value;
+          AddMessage(MessageSource.Local, "SendScale: " + convertVector(value));
+          //string result = "V:" + convertPoint(value);
+          //SendItems.Enqueue(new BTData { Data = result });
+          //NotifyPropertyChanged();
         }
       }
     }
