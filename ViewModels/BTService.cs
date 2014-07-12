@@ -44,23 +44,6 @@ namespace BTControler
       }
     }
 
-    private Point sendPoint = new Point();
-    public Point SendPoint
-    {
-      get { return sendPoint; }
-      set
-      {
-        if (value != sendPoint)
-        {
-          sendPoint = value;
-          string result = "P:" + convertPoint(value);
-          AddMessage(MessageSource.Local, "SendPoint: " + convertPoint(value));
-          //SendItems.Enqueue(new BTData { Data = result });
-          //NotifyPropertyChanged();
-        }
-      }
-    }
-
     private Point sendTranslation = new Point();
     public Point SendTranslation
     {
@@ -77,6 +60,40 @@ namespace BTControler
       }
     }
 
+    private string sendMText = "";
+    public string SendMText
+    {
+      get { return sendMText; }
+      set
+      {
+        if (value != sendMText)
+        {
+          sendMText = value;
+          string result = "M:" + value;
+          AddMessage(MessageSource.Local, "SendMText: " + result);
+          SendItems.Enqueue(new BTData { Data = result });
+          //NotifyPropertyChanged();
+        }
+      }
+    }
+
+    private Point sendPoint = new Point();
+    public Point SendPoint
+    {
+      get { return sendPoint; }
+      set
+      {
+        if (value != sendPoint)
+        {
+          sendPoint = value;
+          string result = "P:" + convertPoint(value);
+          AddMessage(MessageSource.Local, "SendPoint: " + result);
+          SendItems.Enqueue(new BTData { Data = result });
+          //NotifyPropertyChanged();
+        }
+      }
+    }
+
     private Vector sendTrans = new Vector();
     public Vector SendTrans
     {
@@ -86,9 +103,9 @@ namespace BTControler
         if (value != sendTrans)
         {
           sendTrans = value;
-          AddMessage(MessageSource.Local, "SendTrans: " + convertVector(value));
-          //string result = "V:" + convertPoint(value);
-          //SendItems.Enqueue(new BTData { Data = result });
+          string result = "T:" + convertVector(value);
+          AddMessage(MessageSource.Local, "SendTrans: " + result);
+          SendItems.Enqueue(new BTData { Data = result });
           //NotifyPropertyChanged();
         }
       }
@@ -103,38 +120,13 @@ namespace BTControler
         if (value != sendScale)
         {
           sendScale = value;
-          AddMessage(MessageSource.Local, "SendScale: " + convertVector(value));
-          //string result = "V:" + convertPoint(value);
-          //SendItems.Enqueue(new BTData { Data = result });
+          string result = "S:" + convertVector(value);
+          AddMessage(MessageSource.Local, "SendScale: " + result);
+          SendItems.Enqueue(new BTData { Data = result });
           //NotifyPropertyChanged();
         }
       }
     }
-
-    //private double canvasWidth;
-    //public double CanvasWidth { 
-    //  get { return canvasWidth; }
-    //  set
-    //  {
-    //    if (value != canvasWidth)
-    //    {
-    //      canvasWidth = value;
-    //    }
-    //  }
-    //}
-
-    //private double canvasHeight;
-    //public double CanvasHeight
-    //{
-    //  get { return canvasHeight; }
-    //  set
-    //  {
-    //    if (value != canvasHeight)
-    //    {
-    //      canvasHeight = value;
-    //    }
-    //  }
-    //}
 
     volatile bool btClosing;
     TextWriter _connWtr;

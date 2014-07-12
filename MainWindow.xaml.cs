@@ -223,23 +223,13 @@ namespace BTControler
 
     private void canvMain_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
     {
-      Vector vec = e.DeltaManipulation.Scale;
-      //MessageBox.Show("ManiDelatVec: " + vec.ToString());
-
-
-      // Get the image that's being manipulated.
       UIElement element = e.Source as UIElement;
 
-      //// Use the matrix of the transform to manipulate the element's appearance.
-      //Matrix matrix = ((MatrixTransform)element.RenderTransform).Matrix;
-
-      // Get the ManipulationDelta object.
       ManipulationDelta deltaManipulation = e.DeltaManipulation;
-      Size s = element.RenderSize;
-      Point center = e.ManipulationOrigin;
 
-      if (0 < deltaManipulation.Scale.Length)
+      if (1 != deltaManipulation.Scale.X && 1 != deltaManipulation.Scale.Y)
       {
+        App.ViewModel.BTService.SendMText = deltaManipulation.Scale.Length.ToString();
         App.ViewModel.BTService.SendPoint = e.ManipulationOrigin;
         App.ViewModel.BTService.SendScale = deltaManipulation.Scale;
       }
@@ -249,20 +239,6 @@ namespace BTControler
         App.ViewModel.BTService.SendTrans = deltaManipulation.Translation;
       }
       
-      //// Find the old center, and apply any previous manipulations.
-      //Point center = new Point(element.ActualWidth / 2, element.ActualHeight / 2);
-      //center = matrix.Transform(center);
-      
-      //// Apply new zoom manipulation (if it exists).
-      //matrix.ScaleAt(deltaManipulation.Scale.X, deltaManipulation.Scale.Y,
-      //center.X, center.Y);
-      
-      //// Apply new rotation manipulation (if it exists).
-      //matrix.RotateAt(e.DeltaManipulation.Rotation, center.X, center.Y);
-      
-      //// Apply new panning manipulation (if it exists).
-      //matrix.Translate(e.DeltaManipulation.Translation.X,
-      //e.DeltaManipulation.Translation.Y);
     }
 
   }
