@@ -14,14 +14,16 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Forms;
-using System.Windows.Input;
 
 namespace BTControler
 {
   public class BTService : BTBase
   {
-    readonly Guid OurServiceClassId = new Guid("{29913A2D-EB93-40cf-BBB8-DEEE26452197}");
-    readonly string OurServiceName = "32feet.NET Chat2";
+    // Service Class ID
+    private readonly Guid OurServiceClassId = new Guid("{29913A2D-EB93-40cf-BBB8-DEEE26452197}");
+
+    // Service Name
+    private readonly string OurServiceName = "32feet.NET Chat2";
 
     // ListBox Reporting Items
     public ObservableCollection<BTData> ListItems { get; set; }
@@ -30,35 +32,11 @@ namespace BTControler
     // DataQueue for sending...
     public ConcurrentQueue<BTData> SendItems { get; set; }
 
-    private string sendValue = "";
-    public string SendValue { 
-      get { return sendValue; }
-      set
-      {
-        if (value != sendValue)
-        {
-          sendValue = value;
-          SendItems.Enqueue(new BTData { Data = value });
-          NotifyPropertyChanged();
-        }
-      }
-    }
+    private volatile bool btClosing;
+    private TextWriter _connWtr;
+    private BluetoothListener btListener;
 
-    private Point sendTranslation = new Point();
-    public Point SendTranslation
-    {
-      get { return sendTranslation; }
-      set
-      {
-        if (value != sendTranslation)
-        {
-          sendTranslation = value;
-          string result = "V:" + convertPoint(value);
-          SendItems.Enqueue(new BTData { Data = result });
-          NotifyPropertyChanged();
-        }
-      }
-    }
+    #region Properties
 
     private string sendMText = "";
     public string SendMText
@@ -72,7 +50,7 @@ namespace BTControler
           string result = "M:" + value;
           AddMessage(MessageSource.Local, "SendMText: " + result);
           SendItems.Enqueue(new BTData { Data = result });
-          //NotifyPropertyChanged();
+          NotifyPropertyChanged();
         }
       }
     }
@@ -89,7 +67,7 @@ namespace BTControler
           string result = "P:" + convertPoint(value);
           AddMessage(MessageSource.Local, "SendPoint: " + result);
           SendItems.Enqueue(new BTData { Data = result });
-          //NotifyPropertyChanged();
+          NotifyPropertyChanged();
         }
       }
     }
@@ -106,7 +84,7 @@ namespace BTControler
           string result = "T:" + convertVector(value);
           AddMessage(MessageSource.Local, "SendTrans: " + result);
           SendItems.Enqueue(new BTData { Data = result });
-          //NotifyPropertyChanged();
+          NotifyPropertyChanged();
         }
       }
     }
@@ -123,14 +101,12 @@ namespace BTControler
           string result = "S:" + convertVector(value);
           AddMessage(MessageSource.Local, "SendScale: " + result);
           SendItems.Enqueue(new BTData { Data = result });
-          //NotifyPropertyChanged();
+          NotifyPropertyChanged();
         }
       }
     }
 
-    volatile bool btClosing;
-    TextWriter _connWtr;
-    BluetoothListener btListener;
+    #endregion
 
     public BTService()
     {
@@ -257,7 +233,7 @@ namespace BTControler
       ThreadPool.QueueUserWorkItem(ListenerAccept_Runner, lsnr);
     }
 
-    void ListenerAccept_Runner(object state)
+    private void ListenerAccept_Runner(object state)
     {
       var lsnr = (BluetoothListener)btListener;
       // We will accept only one incoming connection at a time. So just
@@ -434,46 +410,6 @@ namespace BTControler
       BluetoothConnect(addr);
     }
 
-    public void ConnectByAddress()
-    {
-      var addr = BluetoothAddress.Parse("002233445566");
-      var line = Microsoft.VisualBasic.Interaction.InputBox("Target Address", "Chat2", null, -1, -1);
-      if (string.IsNullOrEmpty(line))
-      {
-        return;
-      }
-      line = line.Trim();
-      if (!BluetoothAddress.TryParse(line, out addr))
-      {
-        System.Windows.MessageBox.Show("Invalid address.");
-        return;
-      }
-      BluetoothConnect(addr);
-    }
-
-    //public void SendMessage(string message)
-    //{
-    //  if (Send(message))
-    //  {
-    //    AddMessage(MessageSource.Local, message);
-    //  }
-    //}
-
-    //public void SendPosition(Point p)
-    //{
-    //  string r = convertPosition(p);
-    //  if (Send(r))
-    //  {
-    //    AddMessage(MessageSource.Local, r);
-    //  }
-    //}
-
-    //private string convertPosition(Point p)
-    //{
-    //  Point r = new Point(p.X / canvasWidth, p.Y / canvasHeight);
-    //  return r.ToString();
-    //}
-
     private string convertPoint(Point p)
     {
       return 
@@ -486,22 +422,6 @@ namespace BTControler
       return
         v.X.ToString("0.0000", CultureInfo.InvariantCulture) + ";" +
         v.Y.ToString("0.0000", CultureInfo.InvariantCulture);
-    }
-
-    //--
-    private void wtbModeDiscoverable_Click(object sender, EventArgs e)
-    {
-      SetRadioMode(RadioMode.Discoverable);
-    }
-
-    private void wtbModeConnectable_Click(object sender, EventArgs e)
-    {
-      SetRadioMode(RadioMode.Connectable);
-    }
-
-    private void wtbModeNeither_Click(object sender, EventArgs e)
-    {
-      SetRadioMode(RadioMode.PowerOff);
     }
 
     public void ShowRadioInfo()

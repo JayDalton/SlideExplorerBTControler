@@ -23,9 +23,6 @@ namespace BTControler.ViewModels
     public void LoadData()
     {
       createBTConnect();
-      if (BluetoothRadio.IsSupported)
-      {
-      }
     }
 
     private void createBTConnect()
