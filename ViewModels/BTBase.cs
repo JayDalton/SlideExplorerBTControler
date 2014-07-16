@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace BTControler.ViewModels
+namespace BTController.ViewModels
 {
   public class BTBase : INotifyPropertyChanged
   {

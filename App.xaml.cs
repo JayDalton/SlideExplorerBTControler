@@ -5,9 +5,9 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using BTControler.ViewModels;
+using BTController.ViewModels;
 
-namespace BTControler
+namespace BTController
 {
   public partial class App : Application
   {

@@ -14,7 +14,7 @@ using System.Collections.Specialized;
 using System.Windows.Threading;
 using System.Threading;
 
-namespace BTControler.ViewModels
+namespace BTController.ViewModels
 {
   public class BTModel
   {

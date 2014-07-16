@@ -1,4 +1,4 @@
-﻿using BTControler.ViewModels;
+﻿using BTController.ViewModels;
 using InTheHand.Net;
 using InTheHand.Net.Bluetooth;
 using InTheHand.Net.Sockets;
@@ -15,15 +15,16 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Forms;
 
-namespace BTControler
+namespace BTController
 {
   public class BTService : BTBase
   {
     // Service Class ID
-    private readonly Guid OurServiceClassId = new Guid("{29913A2D-EB93-40cf-BBB8-DEEE26452197}");
+    private readonly Guid OurServiceClassId = new Guid("{0ec7250a-955f-442b-a342-4efbe67969f5}");
+    //private readonly Guid OurServiceClassId = new Guid("{29913A2D-EB93-40cf-BBB8-DEEE26452197}");
 
     // Service Name
-    private readonly string OurServiceName = "32feet.NET Chat2";
+    private readonly string OurServiceName = "SlideExplorer 4.0 Bluetooth Controller";
 
     // ListBox Reporting Items
     public ObservableCollection<BTData> ListItems { get; set; }

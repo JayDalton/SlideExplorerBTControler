@@ -1,9 +1,10 @@
 ﻿<Window 
-  x:Class="BTControler.MainWindow"
+  x:Class="BTController.MainWindow"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   Title="Bluetooth Controller" WindowState="Maximized"
   WindowStartupLocation="CenterScreen"
+  Icon="unnamed.ico"
   >
   <Grid>
 

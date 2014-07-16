@@ -56,7 +56,7 @@ C:\Develop\SlideExplorerBTControler\obj\Release\MainWindow.g.cs
 C:\Develop\SlideExplorerBTControler\obj\Release\App.g.cs
 C:\Develop\SlideExplorerBTControler\obj\Release\Bluetooth_MarkupCompile.cache
 C:\Develop\SlideExplorerBTControler\obj\Release\Bluetooth.g.resources
-C:\Develop\SlideExplorerBTControler\obj\Release\BTControler.Properties.Resources.resources
 C:\Develop\SlideExplorerBTControler\obj\Release\BTControler.csproj.GenerateResource.Cache
 C:\Develop\SlideExplorerBTControler\obj\Release\Bluetooth.exe
 C:\Develop\SlideExplorerBTControler\obj\Release\Bluetooth.pdb
+C:\Develop\SlideExplorerBTControler\obj\Release\BTController.Properties.Resources.resources

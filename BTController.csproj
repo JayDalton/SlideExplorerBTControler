@@ -7,7 +7,7 @@
     <ProjectGuid>{941C24B6-591A-45B1-8C78-0126F3D3946F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BTControler</RootNamespace>
+    <RootNamespace>BTController</RootNamespace>
     <AssemblyName>Bluetooth</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
