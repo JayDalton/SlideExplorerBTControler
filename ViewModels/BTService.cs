@@ -49,7 +49,6 @@ namespace BTController
         {
           sendMText = value;
           string result = "M:" + value;
-          AddMessage(MessageSource.Local, "SendMText: " + result);
           SendItems.Enqueue(new BTData { Data = result });
           NotifyPropertyChanged();
         }
@@ -66,7 +65,6 @@ namespace BTController
         {
           sendPoint = value;
           string result = "P:" + convertPoint(value);
-          AddMessage(MessageSource.Local, "SendPoint: " + result);
           SendItems.Enqueue(new BTData { Data = result });
           NotifyPropertyChanged();
         }
@@ -83,7 +81,6 @@ namespace BTController
         {
           sendTrans = value;
           string result = "T:" + convertVector(value);
-          AddMessage(MessageSource.Local, "SendTrans: " + result);
           SendItems.Enqueue(new BTData { Data = result });
           NotifyPropertyChanged();
         }
@@ -100,7 +97,6 @@ namespace BTController
         {
           sendScale = value;
           string result = "S:" + convertVector(value);
-          AddMessage(MessageSource.Local, "SendScale: " + result);
           SendItems.Enqueue(new BTData { Data = result });
           NotifyPropertyChanged();
         }
@@ -220,7 +216,6 @@ namespace BTController
         if (SendItems.TryDequeue(out result))
         {
           Send(result.Data);
-          AddMessage(MessageSource.Local, "Sending: " + result.Data);
         }
       }
     }
@@ -452,10 +447,10 @@ namespace BTController
       switch (source)
       {
         case MessageSource.Local:
-          prefix = "Me: ";
+          prefix = "Local: ";
           break;
         case MessageSource.Remote:
-          prefix = "You: ";
+          prefix = "Remote: ";
           break;
         case MessageSource.Info:
           prefix = "Info: ";

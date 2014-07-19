@@ -15,6 +15,9 @@ namespace BTController
   public partial class MainWindow : Window
   {
 
+    private double bufferedSize = 50;
+    private Vector bufferedTrans = new Vector();
+
     public MainWindow()
     {
       InitializeComponent();
@@ -28,22 +31,24 @@ namespace BTController
 
     private void canvMain_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
     {
-      UIElement element = e.Source as UIElement;
-
       ManipulationDelta deltaManipulation = e.DeltaManipulation;
 
       if (1 != deltaManipulation.Scale.X && 1 != deltaManipulation.Scale.Y)
       {
-        App.ViewModel.BTService.SendMText = deltaManipulation.Scale.Length.ToString();
-        App.ViewModel.BTService.SendPoint = e.ManipulationOrigin;
         App.ViewModel.BTService.SendScale = deltaManipulation.Scale;
+      
+      } else if (0 < deltaManipulation.Translation.Length) {
+
+        bufferedTrans += deltaManipulation.Translation;
+        if (bufferedSize < bufferedTrans.Length)
+        {
+          App.ViewModel.BTService.SendTrans = deltaManipulation.Translation;
+          bufferedTrans.X = 0;
+          bufferedTrans.Y = 0;
+        }
       }
 
-      if (0 < deltaManipulation.Translation.Length)
-      {
-        App.ViewModel.BTService.SendTrans = deltaManipulation.Translation;
-      }
-      
+      e.Handled = true;
     }
 
     private void ConnectBySelect_Click(object sender, RoutedEventArgs e)
